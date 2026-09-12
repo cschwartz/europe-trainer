@@ -1,0 +1,42 @@
+{
+  "name": "europa-trainer",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Duolingo-style trainer for European countries and capitals (German)",
+  "scripts": {
+    "geo": "node scripts/build-geo.mjs",
+    "validate": "node scripts/validate-data.mjs",
+    "test": "npm run validate && vite-node scripts/engine.test.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "dev": "vite",
+    "build": "npm run validate && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "d3-geo": "^3.1.1",
+    "d3-selection": "^3.0.0",
+    "d3-transition": "^3.0.1",
+    "d3-zoom": "^3.0.0",
+    "preact": "^10.24.3",
+    "topojson-client": "^3.1.0"
+  },
+  "allowScripts": {
+    "esbuild@0.21.5": true
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/d3-geo": "^3.1.1",
+    "@types/d3-selection": "^3.0.11",
+    "@types/d3-transition": "^3.0.9",
+    "@types/d3-zoom": "^3.0.8",
+    "@types/geojson": "^7946.0.16",
+    "@types/topojson-client": "^3.1.5",
+    "mapshaper": "^0.6.121",
+    "playwright-core": "^1.63.0",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.21",
+    "vite-node": "^6.0.0",
+    "vite-plugin-singlefile": "^2.3.3"
+  }
+}
