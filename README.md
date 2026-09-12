@@ -56,6 +56,7 @@ src/
 scripts/
   build-geo.mjs            download + clip + simplify Natural Earth -> topojson
   validate-data.mjs        data <-> geometry <-> answer-collision checks (runs on build)
+  build-icon.mjs           renders the home-screen icon, inlined into index.html as data URIs
   build-reference.mjs      generates reference/countries.html, the data-review page
   engine.test.mjs          unit tests for the engine (npm test)
   smoke.mjs                headless end-to-end check at phone + tablet sizes (npm run smoke)
