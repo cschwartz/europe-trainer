@@ -23,6 +23,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      # the npm bundled with setup-node's Node 22 mishandles optional
+      # platform-specific deps in lockfileVersion 3 lockfiles (EBADPLATFORM)
+      - run: npm install -g npm@11
       - run: npm ci
       - run: npm test
       - run: npm run build
