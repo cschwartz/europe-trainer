@@ -15,6 +15,14 @@ npm run dev      # local dev server
 
 Open `dist/index.html` directly in a browser — no server needed.
 
+```bash
+npm test           # data validation + typecheck + unit/component tests (Vitest)
+npm run build && npm run test:e2e   # Playwright end-to-end tests, phone + tablet
+```
+
+Pull requests and pushes to `main` run the full suite via
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+
 Pushes to `main` also deploy `dist/` to GitHub Pages via
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) (enable once in
 *Settings → Pages → Source: GitHub Actions*).
@@ -58,9 +66,11 @@ scripts/
   validate-data.mjs        data <-> geometry <-> answer-collision checks (runs on build)
   build-icon.mjs           renders the home-screen icon, inlined into index.html as data URIs
   build-reference.mjs      generates reference/countries.html, the data-review page
-  engine.test.mjs          unit tests for the engine (npm test)
-  smoke.mjs                headless end-to-end check at phone + tablet sizes (npm run smoke)
   preview-map.mjs          render the map to an SVG for eyeballing
+tests/
+  unit/                    Vitest: engine, geo, store logic (npm run test:unit)
+  component/               Vitest + Testing Library: UI components (npm run test:unit)
+  e2e/                     Playwright: full user flows at phone + tablet sizes (npm run test:e2e)
 ```
 
 ## Map data & correctness
