@@ -66,6 +66,13 @@ export function getState(): Store {
   return state;
 }
 
+/** Test-only: reseed in-memory state from localStorage and clear listeners. Not called by app code. */
+export function __resetForTests(): void {
+  clearTimeout(saveTimer);
+  state = load();
+  listeners.clear();
+}
+
 function set(next: Store): void {
   state = next;
   persist(state);

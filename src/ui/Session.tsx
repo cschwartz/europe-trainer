@@ -59,7 +59,10 @@ export function Session({
   const startedAt = useRef(Date.now());
   const questionStart = useRef(Date.now());
   const advanced = useRef(false);
-  const advanceTimer = useRef<ReturnType<typeof setTimeout>>();
+  // Typed as `number` (not ReturnType<typeof setTimeout>): @types/node, pulled in
+  // transitively by other devDependencies, shadows the browser setTimeout's
+  // return type globally even though this always runs in a browser.
+  const advanceTimer = useRef<number>();
   const finalScore = useRef(0);
 
   const item = queue[index];
