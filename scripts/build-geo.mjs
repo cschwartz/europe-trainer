@@ -5,7 +5,8 @@
  * 2. Keep only the countries we teach; merge the divided sub-parts of Cyprus.
  * 3. Re-key every feature to our own country `id`.
  * 4. Clip to a European window so overseas territories don't distort the map.
- * 5. mapshaper: dissolve by id, simplify (interval-based, keep-shapes), clean.
+ * 5. mapshaper: dissolve by id (with intersection repair), simplify
+ *    (interval-based, keep-shapes), clean.
  * 6. Attach an interior point ("centroid") per country; countries too small to
  *    survive simplification (Vatican) are emitted as a Point marker instead.
  *
@@ -110,7 +111,7 @@ writeFileSync(stage1, JSON.stringify({ type: 'FeatureCollection', features }));
 mapshaper([
   stage1,
   '-clip', `bbox=${CLIP_BBOX.join(',')}`,
-  '-dissolve2', 'id',
+  '-dissolve', 'id',
   '-simplify', `interval=${SIMPLIFY_INTERVAL}`, 'keep-shapes',
   '-clean',
   '-each', 'cx = Math.round(this.innerX * 1000) / 1000, cy = Math.round(this.innerY * 1000) / 1000',

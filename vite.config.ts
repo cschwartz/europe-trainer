@@ -3,12 +3,10 @@ import { viteSingleFile } from 'vite-plugin-singlefile';
 
 // Builds one self-contained dist/index.html: all JS, CSS and the embedded map
 // geometry are inlined, so the file runs offline from disk with no requests.
+// JSX runtime/import source come from tsconfig.json (jsx: "react-jsx",
+// jsxImportSource: "preact"), which Vite's oxc transform reads automatically.
 export default defineConfig({
   plugins: [viteSingleFile()],
-  esbuild: {
-    jsx: 'automatic',
-    jsxImportSource: 'preact',
-  },
   resolve: {
     alias: {
       react: 'preact/compat',

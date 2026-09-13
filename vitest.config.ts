@@ -2,11 +2,9 @@ import { defineConfig } from 'vitest/config';
 
 // Kept separate from vite.config.ts: that config's viteSingleFile() plugin is a
 // build-only concern with no business running during tests.
+// JSX runtime/import source come from tsconfig.json (jsx: "react-jsx",
+// jsxImportSource: "preact"), which Vitest's oxc transform reads automatically.
 export default defineConfig({
-  esbuild: {
-    jsx: 'automatic',
-    jsxImportSource: 'preact',
-  },
   resolve: {
     alias: {
       react: 'preact/compat',
